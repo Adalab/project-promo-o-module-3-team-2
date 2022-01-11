@@ -1,0 +1,96 @@
+<fieldset class="fieldset__fill">
+  <div class="container__fill js_formHeader">
+    <div class="container__fill--icon">
+      <i class="far fa-keyboard" alt="Fill"></i>
+      <h3 class="container__fill--title">Rellena</h3>
+    </div>
+    <i
+      class="
+        fas
+        fa-chevron-up
+        container__fill--iconArrow
+        js_arrowFill js_arrowRotate
+      "
+    ></i>
+  </div>
+
+  <div class="form_container js_collapsed js_fillContainer">
+    <label class="form__label" for="name"> Nombre completo </label>
+    <input
+      class="form__input js_inputName js_allInputs"
+      type="text"
+      id="name"
+      name="name"
+      placeholder="Ej: Amparo Smith"
+      pattern="^[a-zA-Z]{1-50}$"
+      required
+    />
+
+    <label class="form__label" for="job"> Puesto </label>
+    <input
+      class="form__input js_inputJob js_allInputs"
+      type="text"
+      id="job"
+      name="job"
+      placeholder="Ej: Front-end unicorn"
+      pattern="^[a-zA-Z]{1-50}$"
+      required
+    />
+
+    <label class="form__label"> Imagen de perfil </label>
+    <div class="form__img">
+      <label for="photo" class="button__img js__profile-trigger"
+        >Añadir imagen</label
+      >
+      <input
+        type="file"
+        name="photo"
+        id="photo"
+        class="hidden js__profile-upload-btn"
+      />
+      <div class="form__button--square js__profile-preview"></div>
+    </div>
+
+    <label class="form__label" for="email"> Email </label>
+    <input
+      class="form__input js_inputMail js_allInputs"
+      type="email"
+      id="email"
+      name="email"
+      placeholder="Ej: amparo-smith@gmail.com"
+      pattern="^[a-zA-Z]{1-50}$"
+      required
+    />
+
+    <label class="form__label" for="phone"> Teléfono </label>
+    <input
+      class="form__input js_inputPhone js_allInputs"
+      type="tel"
+      id="phone"
+      name="phone"
+      placeholder="Ej: 555-55-55-55"
+    />
+
+    <label class="form__label" for="linkedin"> Linkedin </label>
+    <input
+      class="form__input js_inputLinkedin js_allInputs"
+      type="text"
+      id="linkedin"
+      name="linkedin"
+      placeholder="Ej: linkedin.com/in/amparo.smith"
+      pattern="^[a-zA-Z]{1-50}$"
+      required
+    />
+
+    <label class="form__label" for="github"> Github </label>
+    <input
+      class="form__input github js_inputGithub js_allInputs"
+      type="text"
+      id="github"
+      name="github"
+      placeholder="Ej: @amparo-smith"
+      pattern="^[a-zA-Z]{1-50}$"
+      required
+    />
+  </div>
+</fieldset>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Las Maris Cards</title>
+    <script
+      src="https://kit.fontawesome.com/80c9b8179a.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@900&family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/css/main.css" />
+  </head>
+
+  <body>
+    <header class="header__card">
+      <a href="./index.html">
+        <img
+          class="header__card--logo"
+          src="./assets/images/logo-awesome-profile-cards.svg"
+          alt="logo-awesome"
+        />
+      </a>
+    </header>
+
+    <main class="card__main">
+      <section class="card-preview class">
+        <div class="container">
+          <button class="reset js_reset">
+            <i class="far fa-trash-alt reset__icon"></i>
+            Reset
+          </button>
+          <article class="card">
+            <div class="card__decoration card__decoration__palette1"></div>
+            <div class="card__info">
+              <h3 class="card__info--name js_previewName js_previeNameColor">
+                Nombre Apellido
+              </h3>
+              <p class="card__info--job js_previewJob">Front-end developer</p>
+            </div>
+            <div class="card__img js__profile-image"></div>
+            <ul class="card__social">
+              <li class="card__social--icon js_icon_border">
+                <a class="js_previewPhone" href="#" target="_blank"
+                  ><i class="fas fa-mobile-alt js_icon_image"></i
+                ></a>
+              </li>
+              <li class="card__social--icon js_icon_border">
+                <a class="js_previewEmail" href="#"
+                  ><i class="far fa-envelope js_icon_image"></i
+                ></a>
+              </li>
+              <li class="card__social--icon js_icon_border">
+                <a class="js_previewLinkedin" href="#" target="_blank"
+                  ><i class="fab fa-linkedin-in js_icon_image"></i
+                ></a>
+              </li>
+              <li class="card__social--icon js_icon_border">
+                <a class="js_previewGithub" href="#"
+                  ><i class="fab fa-github-alt js_icon_image"></i
+                ></a>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <form action="" method="post" class="form">
+          <fieldset class="fieldset__design">
+            <div class="container__design js_designHeader">
+              <i class="far fa-object-ungroup container__design--icon" alt="design"></i>
+              <h3 class="container__design--title">diseña</h3>
+              <i
+                class="fas fa-chevron-up container__design--iconArrow js_arrowDesign"
+              ></i>
+            </div>
+            <div class="select js_designContainer">
+              <h3 class="select__title">Colores</h3>
+              <div class="select__options">
+                <label for="optioncolor1" class="select__options--palette">
+                  <input
+                    type="radio"
+                    value="1"
+                    name="palette"
+                    class="select__options--input js_palette js_palette_1"
+                    checked
+                  />
+                  <div class="palette palette__cold1"></div>
+                  <div class="palette palette__cold2"></div>
+                  <div class="palette palette__cold3"></div>
+                </label>
+                <label for="optioncolor2" class="select__options--palette">
+                  <input
+                    type="radio"
+                    value="2"
+                    name="palette"
+                    class="select__options--input js_palette"
+                  />
+                  <div class="palette palette__hot1"></div>
+                  <div class="palette palette__hot2"></div>
+                  <div class="palette palette__hot3"></div>
+                </label>
+                <label for="optioncolor3" class="select__options--palette">
+                  <input
+                    type="radio"
+                    value="3"
+                    name="palette"
+                    class="select__options--input js_palette"
+                  />
+                  <div class="palette palette__mix1"></div>
+                  <div class="palette palette__mix2"></div>
+                  <div class="palette palette__mix3"></div>
+                </label>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="fieldset__fill">
+            <div class="container__fill js_formHeader">
+              <div class="container__fill--icon">
+                <i class="far fa-keyboard" alt="Fill"></i>
+                <h3 class="container__fill--title">Rellena</h3>
+              </div>
+              <i
+                class="
+                  fas
+                  fa-chevron-up
+                  container__fill--iconArrow
+                  js_arrowFill js_arrowRotate
+                "
+              ></i>
+            </div>
+
+            <div class="form_container js_collapsed js_fillContainer">
+              <label class="form__label" for="name"> Nombre completo </label>
+              <input
+                class="form__input js_inputName js_allInputs"
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Ej: Amparo Smith"
+                pattern="^[a-zA-Z]{1-50}$"
+                required
+              />
+
+              <label class="form__label" for="job"> Puesto </label>
+              <input
+                class="form__input js_inputJob js_allInputs"
+                type="text"
+                id="job"
+                name="job"
+                placeholder="Ej: Front-end unicorn"
+                pattern="^[a-zA-Z]{1-50}$"
+                required
+              />
+
+              <label class="form__label"> Imagen de perfil </label>
+              <div class="form__img">
+                <label for="photo" class="button__img js__profile-trigger"
+                  >Añadir imagen</label
+                >
+                <input
+                  type="file"
+                  name="photo"
+                  id="photo"
+                  class="hidden js__profile-upload-btn"
+                />
+                <div class="form__button--square js__profile-preview"></div>
+              </div>
+
+              <label class="form__label" for="email"> Email </label>
+              <input
+                class="form__input js_inputMail js_allInputs"
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Ej: amparo-smith@gmail.com"
+                pattern="^[a-zA-Z]{1-50}$"
+                required
+              />
+
+              <label class="form__label" for="phone"> Teléfono </label>
+              <input
+                class="form__input js_inputPhone js_allInputs"
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Ej: 555-55-55-55"
+              />
+
+              <label class="form__label" for="linkedin"> Linkedin </label>
+              <input
+                class="form__input js_inputLinkedin js_allInputs"
+                type="text"
+                id="linkedin"
+                name="linkedin"
+                placeholder="Ej: linkedin.com/in/amparo.smith"
+                pattern="^[a-zA-Z]{1-50}$"
+                required
+              />
+
+              <label class="form__label" for="github"> Github </label>
+              <input
+                class="form__input github js_inputGithub js_allInputs"
+                type="text"
+                id="github"
+                name="github"
+                placeholder="Ej: @amparo-smith"
+                pattern="^[a-zA-Z]{1-50}$"
+                required
+              />
+            </div>
+          </fieldset>
+
+          <fieldset class="fieldset__share">
+              <div class="container__share js_shareHeader">
+                  <div class="container__share--icon">
+                      <i class="fas fa-share-alt" alt="Share"></i>
+                      <h3 class="container__share--title">Comparte</h3>
+                  </div>
+                  <i class="fas fa-chevron-up js_arrowShare container__share--iconArrow
+                  arrowShare js_arrowRotate"></i>
+              </div>
+              <div class="js_collapsed js_shareContainer">
+                  <div class="container__button js_collapsed">
+                      <button class="container__button__btn--card js_create_button">
+                          <i class="far fa-address-card container__button--icon"></i>crear tarjeta
+                      </button>
+                  </div>
+          </fieldset>
+
+          <fieldset class="fieldset__share js_collapsed js_shareCollapse ">
+              <div class="container__created">
+                  <h4 class="container__created--title">La tarjeta ha sido creada:</h4>
+                  <!-- <a href="" class="container__created--link js_cardURL"></a>
+                  <a href="#" class="btn--twitter js_btnTwitter" target="_blank"></a> -->
+                  <a href="#" class="container__created--link js_cardURL js_twitterFetch " target="_blank"></a>
+                  <a type="submit" class="btn--twitter js_btnTwitter js_collapsed" target="_blank">
+                      <i class="fab fa-twitter twitter-icon"></i>Compartir en twitter
+                  </a>
+              </div>
+          </fieldset>
+
+
+
+
+      </form>
+    </main>
+
+    <footer class="footer">
+      <h5 class="footerCopy">Awesome profile-cards &copy; 2021</h5>
+
+      <a href="#" target="_blank">
+        <img
+          class="imageLogoAdalab"
+          src="./assets/images/mari's_logo.svg"
+          alt="logo"
+          title="logo"
+        />
+      </a>
+    </footer>
+
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>
