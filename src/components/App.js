@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 function App() {
   const [data, setData] = useState({
-    palette: 1,
+    palette: '1',
     name: '',
     job: '',
     email: '',
@@ -17,47 +17,12 @@ function App() {
 
   const handleInput = (ev) => {
     const inputChanged = ev.currentTarget.name;
-    if (inputChanged === 'name') {
-      setData({
-        ...data,
-        name: ev.currentTarget.value,
-      });
-    } else if (inputChanged === 'job') {
-      setData({
-        ...data,
-        job: ev.currentTarget.value,
-      });
-    } else if (inputChanged === 'email') {
-      setData({
-        ...data,
-        email: ev.currentTarget.value,
-      });
-    } else if (inputChanged === 'phone') {
-      setData({
-        ...data,
-        phone: ev.currentTarget.value,
-      });
-    } else if (inputChanged === 'linkedin') {
-      setData({
-        ...data,
-        linkedin: ev.currentTarget.value,
-      });
-    } else if (inputChanged === 'github') {
-      setData({
-        ...data,
-        github: ev.currentTarget.value,
-      });
-    }
+    setData({
+      ...data,
+      [inputChanged]: ev.currentTarget.value,
+    })
   };
 
-  const handleClickPalette = (ev) => {
-    const radioChecked = ev.currentTarget.value;
-    console.log(radioChecked);
-    if (radioChecked === 1) {
-    } else if (radioChecked === 2) {
-    } else if (radioChecked === 3) {
-    }
-  };
 
   return (
     <div>
@@ -74,9 +39,9 @@ function App() {
               Reset
             </button>
             <article className="card">
-              <div className="card__decoration card__decoration__palette1"></div>
+              <div className={`card__decoration card__decoration__palette${data.palette}`}></div>
               <div className="card__info">
-                <h3 className="card__info--name js_previewName js_previeNameColor">
+                <h3 className={`card__info--name js_previewName js_previeNameColor namePreview__pallete${data.palette}`}>
                   {data.name || 'Nombre Completo'}
                 </h3>
 
@@ -85,24 +50,24 @@ function App() {
                 </p>
               </div>
               <div className="card__img js__profile-image"></div>
-              <ul className="card__social">
-                <li className="card__social--icon js_icon_border">
+              <ul className="card__social ">
+                <li className={`card__social--icon social__icon__palette${data.palette} js_icon_border`}>
                   <a
                     className="js_previewPhone"
                     href={data.phone === '' ? '#' : `tel:+34${data.phone}`}
                   >
-                    <i className="fas fa-mobile-alt js_icon_image"></i>
+                    <i className={`fas fa-mobile-alt js_icon_image icon_image__pallete${data.palette}`} ></i>
                   </a>
                 </li>
-                <li className="card__social--icon js_icon_border">
+                <li className={`card__social--icon social__icon__palette${data.palette} js_icon_border`}>
                   <a
                     className="js_previewEmail"
                     href={data.email === '' ? '#' : `mailto:${data.email}`}
                   >
-                    <i className="far fa-envelope js_icon_image"></i>
+                    <i className={`far fa-envelope js_icon_image icon_image__pallete${data.palette}`}></i>
                   </a>
                 </li>
-                <li className="card__social--icon js_icon_border">
+                <li className={`card__social--icon social__icon__palette${data.palette} js_icon_border`}>
                   <a
                     className="js_previewLinkedin"
                     href={
@@ -111,10 +76,10 @@ function App() {
                         : `https://www.linkedin.com/in/${data.linkedin}`
                     }
                   >
-                    <i className="fab fa-linkedin-in js_icon_image"></i>
+                    <i className={`fab fa-linkedin-in js_icon_image icon_image__pallete${data.palette}`}></i>
                   </a>
                 </li>
-                <li className="card__social--icon js_icon_border">
+                <li className={`card__social--icon social__icon__palette${data.palette} js_icon_border`}>
                   <a
                     className="js_previewGithub"
                     href={
@@ -123,13 +88,13 @@ function App() {
                         : `https://github.com/${data.github}`
                     }
                   >
-                    <i className="fab fa-github-alt js_icon_image"></i>
+                    <i className={`fab fa-github-alt js_icon_image icon_image__pallete${data.palette}`}></i>
                   </a>
                 </li>
               </ul>
             </article>
           </div>
-        </section>
+        </section >
         <form action="" method="post" className="form">
           <fieldset className="fieldset__design">
             <div className="container__design js_designHeader">
@@ -148,12 +113,12 @@ function App() {
                   className="select__options--palette"
                 >
                   <input
-                    onClick={handleClickPalette}
+                    onChange={handleInput}
                     type="radio"
                     value="1"
                     name="palette"
                     className="select__options--input js_palette js_palette_1"
-                    defaultChecked
+                    checked={data.palette === '1'}
                   />
                   <div className="palette palette__cold1"></div>
                   <div className="palette palette__cold2"></div>
@@ -164,11 +129,12 @@ function App() {
                   className="select__options--palette"
                 >
                   <input
-                    onClick={handleClickPalette}
+                    onChange={handleInput}
                     type="radio"
                     value="2"
                     name="palette"
                     className="select__options--input js_palette"
+                    checked={data.palette === '2'}
                   />
                   <div className="palette palette__hot1"></div>
                   <div className="palette palette__hot2"></div>
@@ -179,11 +145,12 @@ function App() {
                   className="select__options--palette"
                 >
                   <input
-                    onClick={handleClickPalette}
+                    onChange={handleInput}
                     type="radio"
                     value="3"
                     name="palette"
                     className="select__options--input js_palette"
+                    checked={data.palette === '3'}
                   />
                   <div className="palette palette__mix1"></div>
                   <div className="palette palette__mix2"></div>
@@ -360,7 +327,7 @@ function App() {
             </div>
           </fieldset>
         </form>
-      </main>
+      </main >
       <footer className="footer">
         <h5 className="footerCopy">Awesome profile-cards &copy; 2021</h5>
 
@@ -373,7 +340,7 @@ function App() {
           />
         </a>
       </footer>
-    </div>
+    </div >
   );
 }
 
