@@ -15,14 +15,28 @@ function App() {
     photo: null,
   });
 
+  const [collapsable, setCollapsable] = useState(true);
+
   const handleInput = (ev) => {
     const inputChanged = ev.currentTarget.name;
     setData({
       ...data,
       [inputChanged]: ev.currentTarget.value,
-    })
+    });
   };
 
+  const handleClickReset = () => {
+    setData({
+      palette: '1',
+      name: '',
+      job: '',
+      email: '',
+      phone: '',
+      linkedin: '',
+      github: '',
+      photo: null,
+    });
+  };
 
   return (
     <div>
@@ -34,14 +48,18 @@ function App() {
       <main className="card__main">
         <section className="card-preview className">
           <div className="container">
-            <button className="reset js_reset">
+            <button className="reset js_reset" onClick={handleClickReset}>
               <i className="far fa-trash-alt reset__icon"></i>
               Reset
             </button>
             <article className="card">
-              <div className={`card__decoration card__decoration__palette${data.palette}`}></div>
+              <div
+                className={`card__decoration card__decoration__palette${data.palette}`}
+              ></div>
               <div className="card__info">
-                <h3 className={`card__info--name js_previewName js_previeNameColor namePreview__pallete${data.palette}`}>
+                <h3
+                  className={`card__info--name js_previewName js_previeNameColor namePreview__pallete${data.palette}`}
+                >
                   {data.name || 'Nombre Completo'}
                 </h3>
 
@@ -51,23 +69,33 @@ function App() {
               </div>
               <div className="card__img js__profile-image"></div>
               <ul className="card__social ">
-                <li className={`card__social--icon social__icon__palette${data.palette} js_icon_border`}>
+                <li
+                  className={`card__social--icon social__icon__palette${data.palette} js_icon_border`}
+                >
                   <a
                     className="js_previewPhone"
                     href={data.phone === '' ? '#' : `tel:+34${data.phone}`}
                   >
-                    <i className={`fas fa-mobile-alt js_icon_image icon_image__pallete${data.palette}`} ></i>
+                    <i
+                      className={`fas fa-mobile-alt js_icon_image icon_image__pallete${data.palette}`}
+                    ></i>
                   </a>
                 </li>
-                <li className={`card__social--icon social__icon__palette${data.palette} js_icon_border`}>
+                <li
+                  className={`card__social--icon social__icon__palette${data.palette} js_icon_border`}
+                >
                   <a
                     className="js_previewEmail"
                     href={data.email === '' ? '#' : `mailto:${data.email}`}
                   >
-                    <i className={`far fa-envelope js_icon_image icon_image__pallete${data.palette}`}></i>
+                    <i
+                      className={`far fa-envelope js_icon_image icon_image__pallete${data.palette}`}
+                    ></i>
                   </a>
                 </li>
-                <li className={`card__social--icon social__icon__palette${data.palette} js_icon_border`}>
+                <li
+                  className={`card__social--icon social__icon__palette${data.palette} js_icon_border`}
+                >
                   <a
                     className="js_previewLinkedin"
                     href={
@@ -76,10 +104,14 @@ function App() {
                         : `https://www.linkedin.com/in/${data.linkedin}`
                     }
                   >
-                    <i className={`fab fa-linkedin-in js_icon_image icon_image__pallete${data.palette}`}></i>
+                    <i
+                      className={`fab fa-linkedin-in js_icon_image icon_image__pallete${data.palette}`}
+                    ></i>
                   </a>
                 </li>
-                <li className={`card__social--icon social__icon__palette${data.palette} js_icon_border`}>
+                <li
+                  className={`card__social--icon social__icon__palette${data.palette} js_icon_border`}
+                >
                   <a
                     className="js_previewGithub"
                     href={
@@ -88,13 +120,15 @@ function App() {
                         : `https://github.com/${data.github}`
                     }
                   >
-                    <i className={`fab fa-github-alt js_icon_image icon_image__pallete${data.palette}`}></i>
+                    <i
+                      className={`fab fa-github-alt js_icon_image icon_image__pallete${data.palette}`}
+                    ></i>
                   </a>
                 </li>
               </ul>
             </article>
           </div>
-        </section >
+        </section>
         <form action="" method="post" className="form">
           <fieldset className="fieldset__design">
             <div className="container__design js_designHeader">
@@ -183,6 +217,7 @@ function App() {
               </label>
               <input
                 onChange={handleInput}
+                value={data.name}
                 className="form__input js_inputName js_allInputs"
                 type="text"
                 id="name"
@@ -197,6 +232,7 @@ function App() {
               </label>
               <input
                 onChange={handleInput}
+                value={data.job}
                 className="form__input js_inputJob js_allInputs"
                 type="text"
                 id="job"
@@ -228,6 +264,7 @@ function App() {
               </label>
               <input
                 onChange={handleInput}
+                value={data.email}
                 className="form__input js_inputMail js_allInputs"
                 type="email"
                 id="email"
@@ -242,6 +279,7 @@ function App() {
               </label>
               <input
                 onChange={handleInput}
+                value={data.phone}
                 className="form__input js_inputPhone js_allInputs"
                 type="tel"
                 id="phone"
@@ -254,6 +292,7 @@ function App() {
               </label>
               <input
                 onChange={handleInput}
+                value={data.linkedin}
                 className="form__input js_inputLinkedin js_allInputs"
                 type="text"
                 id="linkedin"
@@ -268,6 +307,7 @@ function App() {
               </label>
               <input
                 onChange={handleInput}
+                value={data.github}
                 className="form__input github js_inputGithub js_allInputs"
                 type="text"
                 id="github"
@@ -327,7 +367,7 @@ function App() {
             </div>
           </fieldset>
         </form>
-      </main >
+      </main>
       <footer className="footer">
         <h5 className="footerCopy">Awesome profile-cards &copy; 2021</h5>
 
@@ -340,7 +380,7 @@ function App() {
           />
         </a>
       </footer>
-    </div >
+    </div>
   );
 }
 
