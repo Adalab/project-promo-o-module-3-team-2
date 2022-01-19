@@ -16,6 +16,7 @@
     display: flex;
   }
   &--title {
+    flex-grow: 1;
     font-size: 18px;
     padding-left: 10px;
     text-transform: uppercase;
@@ -120,6 +121,6 @@
 
 //Para ocultar el input
 
-.hidden{
+.hidden {
   display: none;
 }

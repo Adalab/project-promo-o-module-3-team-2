@@ -19,6 +19,7 @@
     flex-direction: row;
   }
   &--title {
+    flex-grow: 1;
     font-size: 18px;
     padding-left: 10px;
     text-transform: uppercase;

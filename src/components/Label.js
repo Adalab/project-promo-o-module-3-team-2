@@ -1,0 +1,11 @@
+const Label = (props) => {
+  return (
+    <div className={`container__${props.name}`}>
+      <i className={`${props.icon} container__${props.name}--icon`} alt={`${props.name}`}></i>
+      <h3 className={`container__${props.name}--title`}>{props.title}</h3>
+      <i className={`fas fa-chevron-up container__${props.name}--iconArrow`}></i>
+    </div>
+  );
+};
+
+export default Label;
