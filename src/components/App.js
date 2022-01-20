@@ -1,7 +1,7 @@
 import '../styles/App.scss';
 import logo from '../images/logo-awesome-profile-cards.svg';
 import logoFooter from '../images/marilogo.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import dataApi from '../services/api.js';
 import Header from './Header';
 import CardPreview from './CardPreview';
@@ -22,8 +22,7 @@ function App() {
     })
   );
 
-  //LS
-
+  //<----------------Local Storage----------------->
   useEffect(() => {
     // Guardamos el nombre y el email en el local storage
     ls.set('dataLS', data);
