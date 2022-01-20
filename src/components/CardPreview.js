@@ -1,14 +1,11 @@
 import Icons from './Icons';
+import ResetBtn from './ResetBtn';
 
 const CardPreview = (props) => {
-
   return (
     <section className='card-preview className'>
       <div className='container'>
-        <button className='reset js_reset' /*</div>onClick={handleClickReset}*/>
-          <i className='far fa-trash-alt reset__icon'></i>
-          Reset
-        </button>
+        <ResetBtn handleReset={props.handleReset}></ResetBtn>
         <article className='card'>
           <div className={`card__decoration card__decoration__palette${props.palette}`}></div>
           <div className='card__info'>
@@ -23,15 +20,30 @@ const CardPreview = (props) => {
           </div>
           <div className='card__img js__profile-image'></div>
           <ul className='card__social '>
-            <Icons type={props.phone} href='tel:+34' iconName='fas fa-mobile-alt' palette={props.data.palette} />
-            <Icons type={props.palette} href='mailto:' iconName='far fa-envelope' palette={props.data.palette} />
+            <Icons
+              type={props.phone}
+              href='tel:+34'
+              iconName='fas fa-mobile-alt'
+              palette={props.data.palette}
+            />
+            <Icons
+              type={props.palette}
+              href='mailto:'
+              iconName='far fa-envelope'
+              palette={props.data.palette}
+            />
             <Icons
               type={props.linkedin}
               href='https://www.linkedin.com/in/'
               iconName='fab fa-linkedin-in'
               palette={props.data.palette}
             />
-            <Icons type={props.github} href='https://github.com/' iconName='fab fa-github-alt' palette={props.data.palette} />
+            <Icons
+              type={props.github}
+              href='https://github.com/'
+              iconName='fab fa-github-alt'
+              palette={props.data.palette}
+            />
           </ul>
         </article>
       </div>

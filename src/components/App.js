@@ -39,7 +39,7 @@ function App() {
     });
   };
 
-  const handleClickReset = () => {
+  const handleReset = () => {
     setData({
       palette: '1',
       name: '',
@@ -75,6 +75,7 @@ function App() {
           linkedin={data.linkedin}
           github={data.github}
           data={data}
+          handleReset={handleReset}
         />
         <form action='' method='post' className='form'>
           <fieldset className='fieldset__design'>
