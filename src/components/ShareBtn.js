@@ -2,6 +2,10 @@ const ShareBtn = (props) => {
   const handleCreateCard = (ev) => {
     props.HandleClickBtnCreateCard(ev);
   };
+  let htmlErrorMessage = <p></p>;
+  if (props.apiData.success === false) {
+    htmlErrorMessage = <p>{props.apiData.error}</p>;
+  }
   return (
     <div>
       <div className='container__button '>
@@ -10,6 +14,7 @@ const ShareBtn = (props) => {
           crear tarjeta
         </button>
       </div>
+      {htmlErrorMessage}
     </div>
   );
 };

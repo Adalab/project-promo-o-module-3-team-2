@@ -11,6 +11,7 @@ import Palettes from './Palettes';
 import ls from '../services/localstorage';
 import Footer from './Footer';
 import ShareBtn from './ShareBtn';
+import ShareUrl from './ShareUrl';
 
 function App() {
   const [data, setData] = useState(
@@ -54,18 +55,18 @@ function App() {
     });
   };
 
-  const [cardUrl, setCardUrl] = useState('');
+  const [apiData, setApiData] = useState({
+    cardURL: '',
+    success: false,
+  });
 
   const HandleClickBtnCreateCard = (ev) => {
     ev.preventDefault();
     dataApi(data).then((data) => {
-      setCardUrl(data.cardURL);
+      console.log(data);
+      setApiData(data);
     });
   };
-
-  useEffect(() => {
-    console.log(cardUrl);
-  }, [cardUrl]);
 
   return (
     <div>
@@ -185,24 +186,13 @@ function App() {
           <fieldset className='fieldset__share'>
             <Label title='Comparte' icon='fas fa-share-alt' name='share' />
 
-            <ShareBtn HandleClickBtnCreateCard={HandleClickBtnCreateCard}></ShareBtn>
+            <ShareBtn
+              HandleClickBtnCreateCard={HandleClickBtnCreateCard}
+              apiData={apiData}
+            ></ShareBtn>
           </fieldset>
-          <fieldset className='fieldset__share  js_shareCollapse '>
-            <div className='container__created'>
-              <h4 className='container__created--title'>La tarjeta ha sido creada:</h4>
-              <a href={cardUrl} className='container__created--link'>
-                {cardUrl}
-              </a>
-              <a href='#' className='btn--twitter js_btnTwitter' target='_blank'></a>
-              <a
-                href='#'
-                className='container__created--link js_cardURL js_twitterFetch '
-                target='_blank'
-              ></a>
-              <a type='submit' className='btn--twitter js_btnTwitter ' target='_blank'>
-                <i className='fab fa-twitter twitter-icon'></i>Compartir en twitter
-              </a>
-            </div>
+          <fieldset className='fieldset__share'>
+            <ShareUrl apiData={apiData}></ShareUrl>
           </fieldset>
         </form>
       </main>
