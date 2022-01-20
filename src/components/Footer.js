@@ -1,8 +1,10 @@
+import logoFooter from '../images/marilogo.svg';
+
 const Footer = (props) => {
   return (
     <footer className='footer'>
       <h5 className='footerCopy'>Awesome profile-cards &copy; 2021</h5>
-      <img className='imageLogoAdalab' src={props.logo} alt='logo' title='logo' />
+      <img className='imageLogoAdalab' src={logoFooter} alt='logo' title='logo' />
     </footer>
   );
 };

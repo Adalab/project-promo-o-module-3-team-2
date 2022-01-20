@@ -1,6 +1,5 @@
 import '../styles/App.scss';
 import logo from '../images/logo-awesome-profile-cards.svg';
-import logoFooter from '../images/marilogo.svg';
 import { useState, useEffect } from 'react';
 import dataApi from '../services/api.js';
 import Header from './Header';
@@ -196,7 +195,7 @@ function App() {
           </fieldset>
         </form>
       </main>
-      <Footer logo={logo}></Footer>
+      <Footer></Footer>
     </div>
   );
 }
