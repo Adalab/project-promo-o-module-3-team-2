@@ -1,23 +1,33 @@
 import '../styles/App.scss';
 import logo from '../images/logo-awesome-profile-cards.svg';
 import logoFooter from '../images/marilogo.svg';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import dataApi from '../services/api.js';
 import Header from './Header';
 import CardPreview from './CardPreview';
 import Label from './Label';
+import Input from './Input';
+import Palettes from './Palettes';
+import ls from '../services/localstorage';
 
 function App() {
-  const [data, setData] = useState({
-    palette: '1',
-    name: '',
-    job: '',
-    email: '',
-    phone: '',
-    linkedin: '',
-    github: '',
-    photo: 'https://www.anipedia.net/imagenes/perros-800x375.jpg',
-  });
+  const [data, setData] = useState(
+    ls.get('dataLS', {
+      palette: '1',
+      name: '',
+      job: '',
+      email: '',
+      phone: '',
+      linkedin: '',
+      github: '',
+      photo: 'https://www.anipedia.net/imagenes/perros-800x375.jpg',
+    })
+  );
+
+  useEffect(() => {
+    // Guardamos el nombre y el email en el local storage
+    ls.set('dataLS', data);
+  }, [data]);
 
   const [collapsable, setCollapsable] = useState(true);
 
@@ -64,6 +74,7 @@ function App() {
           email={data.email}
           linkedin={data.linkedin}
           github={data.github}
+          data={data}
         />
         <form action='' method='post' className='form'>
           <fieldset className='fieldset__design'>
@@ -71,45 +82,10 @@ function App() {
             <div className='select js_designContainer'>
               <h3 className='select__title'>Colores</h3>
               <div className='select__options'>
-                <label htmlFor='optioncolor1' className='select__options--palette'>
-                  <input
-                    onChange={handleInput}
-                    type='radio'
-                    value='1'
-                    name='palette'
-                    className='select__options--input js_palette js_palette_1'
-                    checked={data.palette === '1'}
-                  />
-                  <div className='palette palette__cold1'></div>
-                  <div className='palette palette__cold2'></div>
-                  <div className='palette palette__cold3'></div>
-                </label>
-                <label htmlFor='optioncolor2' className='select__options--palette'>
-                  <input
-                    onChange={handleInput}
-                    type='radio'
-                    value='2'
-                    name='palette'
-                    className='select__options--input js_palette'
-                    checked={data.palette === '2'}
-                  />
-                  <div className='palette palette__hot1'></div>
-                  <div className='palette palette__hot2'></div>
-                  <div className='palette palette__hot3'></div>
-                </label>
-                <label htmlFor='optioncolor3' className='select__options--palette'>
-                  <input
-                    onChange={handleInput}
-                    type='radio'
-                    value='3'
-                    name='palette'
-                    className='select__options--input js_palette'
-                    checked={data.palette === '3'}
-                  />
-                  <div className='palette palette__mix1'></div>
-                  <div className='palette palette__mix2'></div>
-                  <div className='palette palette__mix3'></div>
-                </label>
+
+                <Palettes number='1' color='cold' data={data.palette} handleInput={handleInput} />
+                <Palettes number='2' color='hot' data={data.palette} handleInput={handleInput} />
+                <Palettes number='3' color='mix' data={data.palette} handleInput={handleInput} />
               </div>
             </div>
           </fieldset>
@@ -119,35 +95,14 @@ function App() {
 
             {/* js_collapse : para collapsar */}
             <div className='form_container  js_fillContainer'>
-              <label className='form__label' htmlFor='name'>
-                Nombre completo
-              </label>
-              <input
-                onChange={handleInput}
-                value={data.name}
-                className='form__input js_inputName js_allInputs'
+              <Input labelText='Nombre Completo' id='name' placeholder='Ej: Amparo Smith' pattern='^[a-zA-Z]{1 - 50}$' required='required' handleInput={handleInput} data={data.name}
                 type='text'
-                id='name'
-                name='name'
-                placeholder='Ej: Amparo Smith'
-                pattern='^[a-zA-Z]{1-50}$'
-                required
               />
 
-              <label className='form__label' htmlFor='job'>
-                Puesto
-              </label>
-              <input
-                onChange={handleInput}
-                value={data.job}
-                className='form__input js_inputJob js_allInputs'
-                type='text'
-                id='job'
-                name='job'
-                placeholder='Ej: Front-end unicorn'
-                pattern='^[a-zA-Z]{1-50}$'
-                required
-              />
+              <Input labelText='Puesto' id='job' placeholder='Ej: Front-end unicorn' pattern='^[a-zA-Z]{1 - 50}$' required='required' handleInput={handleInput} data={data.job}
+                type='text' />
+
+
 
               <label className='form__label'> Imagen de perfil </label>
               <div className='form__img'>
@@ -163,63 +118,27 @@ function App() {
                 <div className='form__button--square js__profile-preview'></div>
               </div>
 
-              <label className='form__label' htmlFor='email'>
-                Email
-              </label>
-              <input
-                onChange={handleInput}
-                value={data.email}
-                className='form__input js_inputMail js_allInputs'
-                type='email'
-                id='email'
-                name='email'
-                placeholder='Ej: amparo-smith@gmail.com'
-                pattern='^[a-zA-Z]{1-50}$'
-                required
-              />
-
-              <label className='form__label' htmlFor='phone'>
-                Teléfono
-              </label>
-              <input
-                onChange={handleInput}
-                value={data.phone}
-                className='form__input js_inputPhone js_allInputs'
-                type='tel'
-                id='phone'
-                name='phone'
-                placeholder='Ej: 555-55-55-55'
-              />
-
-              <label className='form__label' htmlFor='linkedin'>
-                Linkedin
-              </label>
-              <input
-                onChange={handleInput}
-                value={data.linkedin}
-                className='form__input js_inputLinkedin js_allInputs'
+              <Input labelText='Email' id='email' placeholder='Ej:amparo-smith@gmail.com'
+                pattern='^[a-zA-Z]{1 - 50}$' required='required' handleInput={handleInput}
+                data={data.email}
                 type='text'
-                id='linkedin'
-                name='linkedin'
-                placeholder='Ej: linkedin.com/in/amparo.smith'
-                pattern='^[a-zA-Z]{1-50}$'
-                required
               />
 
-              <label className='form__label' htmlFor='github'>
-                Github
-              </label>
-              <input
-                onChange={handleInput}
-                value={data.github}
-                className='form__input github js_inputGithub js_allInputs'
-                type='text'
-                id='github'
-                name='github'
-                placeholder='Ej: @amparo-smith'
-                pattern='^[a-zA-Z]{1-50}$'
-                required
-              />
+              <Input labelText='Teléfono' id='phone' placeholder='Ej: 555-55-55-55'
+                pattern='^[a-zA-Z]{1 - 50}$' required='required' handleInput={handleInput}
+                data={data.phone}
+                type='tel' />
+
+              <Input labelText='Linkedin' id='linkedin' placeholder='Ej: linkedin.com/in/amparo.smith'
+                pattern='^[a-zA-Z]{1 - 50}$' required='required' handleInput={handleInput}
+                data={data.linkedin}
+                type='text' />
+
+              <Input labelText='Github' id='github' placeholder='Ej: @amparo-smith'
+                pattern='^[a-zA-Z]{1 - 50}$' required='required' handleInput={handleInput}
+                data={data.github}
+                type='text' />
+
             </div>
           </fieldset>
 
