@@ -1,4 +1,4 @@
-import './styles/components/Footer.scss';
+import '../styles/components/Footer.scss';
 import '../styles/core/Variables.scss';
 import logoFooter from '../images/marilogo.svg';
 
