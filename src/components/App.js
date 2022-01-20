@@ -6,18 +6,28 @@ import dataApi from '../services/api.js';
 import Header from './Header';
 import CardPreview from './CardPreview';
 import Label from './Label';
+import ls from '../services/localStorage';
 
 function App() {
-  const [data, setData] = useState({
-    palette: '1',
-    name: '',
-    job: '',
-    email: '',
-    phone: '',
-    linkedin: '',
-    github: '',
-    photo: 'https://www.anipedia.net/imagenes/perros-800x375.jpg',
-  });
+  const [data, setData] = useState(
+    ls.get('dataLS', {
+      palette: '1',
+      name: '',
+      job: '',
+      email: '',
+      phone: '',
+      linkedin: '',
+      github: '',
+      photo: 'https://www.anipedia.net/imagenes/perros-800x375.jpg',
+    })
+  );
+
+  //LS
+
+  useEffect(() => {
+    // Guardamos el nombre y el email en el local storage
+    ls.set('dataLS', data);
+  }, [data]);
 
   const [collapsable, setCollapsable] = useState(true);
 
