@@ -9,6 +9,8 @@ import Label from './Label';
 import Input from './Input';
 import Palettes from './Palettes';
 import ls from '../services/localstorage';
+import Footer from './Footer';
+import ShareBtn from './ShareBtn';
 
 function App() {
   const [data, setData] = useState(
@@ -24,8 +26,8 @@ function App() {
     })
   );
 
+  //Local Storage:
   useEffect(() => {
-    // Guardamos el nombre y el email en el local storage
     ls.set('dataLS', data);
   }, [data]);
 
@@ -48,19 +50,22 @@ function App() {
       phone: '',
       linkedin: '',
       github: '',
-      photo: null,
+      photo: 'https://www.anipedia.net/imagenes/perros-800x375.jpg',
     });
   };
 
-  const [cardUrl, setCardUrl] = useState({});
+  const [cardUrl, setCardUrl] = useState('');
 
   const HandleClickBtnCreateCard = (ev) => {
     ev.preventDefault();
     dataApi(data).then((data) => {
-      console.log(data);
-      setCardUrl(data);
+      setCardUrl(data.cardURL);
     });
   };
+
+  useEffect(() => {
+    console.log(cardUrl);
+  }, [cardUrl]);
 
   return (
     <div>
@@ -180,23 +185,14 @@ function App() {
           <fieldset className='fieldset__share'>
             <Label title='Comparte' icon='fas fa-share-alt' name='share' />
 
-            <div className='js_shareContainer'>
-              <div className='container__button '>
-                <button
-                  className='container__button__btn--card js_create_button'
-                  onClick={HandleClickBtnCreateCard}
-                >
-                  <i className='far fa-address-card container__button--icon'></i>
-                  crear tarjeta
-                </button>
-              </div>
-            </div>
+            <ShareBtn HandleClickBtnCreateCard={HandleClickBtnCreateCard}></ShareBtn>
           </fieldset>
-
           <fieldset className='fieldset__share  js_shareCollapse '>
             <div className='container__created'>
               <h4 className='container__created--title'>La tarjeta ha sido creada:</h4>
-              <a href='' className='container__created--link js_cardURL'></a>
+              <a href={cardUrl} className='container__created--link'>
+                {cardUrl}
+              </a>
               <a href='#' className='btn--twitter js_btnTwitter' target='_blank'></a>
               <a
                 href='#'
@@ -210,13 +206,7 @@ function App() {
           </fieldset>
         </form>
       </main>
-      <footer className='footer'>
-        <h5 className='footerCopy'>Awesome profile-cards &copy; 2021</h5>
-
-        <a href='#' target='_blank'>
-          <img className='imageLogoAdalab' src={logoFooter} alt='logo' title='logo' />
-        </a>
-      </footer>
+      <Footer logo={logo}></Footer>
     </div>
   );
 }
