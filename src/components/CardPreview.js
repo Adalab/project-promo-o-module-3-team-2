@@ -37,7 +37,7 @@ const CardPreview = (props) => {
               palette={props.data.palette}
             />
             <Icons
-              type={props.palette}
+              type={props.email}
               href="mailto:"
               iconName="far fa-envelope"
               palette={props.data.palette}
