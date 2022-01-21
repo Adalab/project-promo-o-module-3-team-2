@@ -9,6 +9,8 @@ import Input from './Input';
 import Palettes from './Palettes';
 import ls from '../services/localstorage';
 import Footer from '../components/Footer';
+import ShareBtn from './ShareBtn';
+import ShareUrl from './ShareUrl';
 
 function App() {
   const [data, setData] = useState(
@@ -53,18 +55,22 @@ function App() {
 
   const [cardUrl, setCardUrl] = useState({});
 
+  const [apiData, setApiData] = useState({
+    cardURL: '',
+    success: false,
+  });
+
   const HandleClickBtnCreateCard = (ev) => {
     ev.preventDefault();
     dataApi(data).then((data) => {
-      console.log(data);
-      setCardUrl(data);
+      setApiData(data);
     });
   };
 
   return (
     <div>
       <Header img={logo} />
-      <main className="card__main">
+      <main className='card__main'>
         <CardPreview
           palette={data.palette}
           name={data.name}
@@ -89,8 +95,8 @@ function App() {
             </div>
           </fieldset>
 
-          <fieldset className="fieldset__fill">
-            <Label title="Rellena" icon="far fa-keyboard" name="fill" />
+          <fieldset className='fieldset__fill'>
+            <Label title='Rellena' icon='far fa-keyboard' name='fill' />
 
             {/* js_collapse : para collapsar */}
             <div className='form_container  js_fillContainer'>
@@ -116,21 +122,18 @@ function App() {
                 type='text'
               />
 
-              <label className="form__label"> Imagen de perfil </label>
-              <div className="form__img">
-                <label
-                  htmlFor="photo"
-                  className="button__img js__profile-trigger"
-                >
+              <label className='form__label'> Imagen de perfil </label>
+              <div className='form__img'>
+                <label htmlFor='photo' className='button__img js__profile-trigger'>
                   Añadir imagen
                 </label>
                 <input
-                  type="file"
-                  name="photo"
-                  id="photo"
-                  className="hidden js__profile-upload-btn"
+                  type='file'
+                  name='photo'
+                  id='photo'
+                  className='hidden js__profile-upload-btn'
                 />
-                <div className="form__button--square js__profile-preview"></div>
+                <div className='form__button--square js__profile-preview'></div>
               </div>
 
               <Input
@@ -141,7 +144,7 @@ function App() {
                 required='required'
                 handleInput={handleInput}
                 data={data.email}
-                type="text"
+                type='text'
               />
 
               <Input
@@ -179,47 +182,16 @@ function App() {
             </div>
           </fieldset>
 
-          <fieldset className="fieldset__share">
-            <Label title="Comparte" icon="fas fa-share-alt" name="share" />
+          <fieldset className='fieldset__share'>
+            <Label title='Comparte' icon='fas fa-share-alt' name='share' />
 
-            <div className="js_shareContainer">
-              <div className="container__button ">
-                <button
-                  className="container__button__btn--card js_create_button"
-                  onClick={HandleClickBtnCreateCard}
-                >
-                  <i className="far fa-address-card container__button--icon"></i>
-                  crear tarjeta
-                </button>
-              </div>
-            </div>
+            <ShareBtn
+              HandleClickBtnCreateCard={HandleClickBtnCreateCard}
+              apiData={apiData}
+            ></ShareBtn>
           </fieldset>
-
-          <fieldset className="fieldset__share  js_shareCollapse ">
-            <div className="container__created">
-              <h4 className="container__created--title">
-                La tarjeta ha sido creada:
-              </h4>
-              <a href="" className="container__created--link js_cardURL"></a>
-              <a
-                href="#"
-                className="btn--twitter js_btnTwitter"
-                target="_blank"
-              ></a>
-              <a
-                href="#"
-                className="container__created--link js_cardURL js_twitterFetch "
-                target="_blank"
-              ></a>
-              <a
-                type="submit"
-                className="btn--twitter js_btnTwitter "
-                target="_blank"
-              >
-                <i className="fab fa-twitter twitter-icon"></i>Compartir en
-                twitter
-              </a>
-            </div>
+          <fieldset className='fieldset__share'>
+            <ShareUrl apiData={apiData}></ShareUrl>
           </fieldset>
         </form>
       </main>
