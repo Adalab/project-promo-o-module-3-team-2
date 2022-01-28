@@ -55,7 +55,7 @@ function App() {
     success: false,
   });
 
-  const HandleClickBtnCreateCard = (ev) => {
+  const handleClickBtnCreateCard = (ev) => {
     ev.preventDefault();
     dataApi(data).then((data) => {
       console.log(data);
@@ -83,6 +83,19 @@ function App() {
     }
   }
 
+  const disabledBtnShare = () => {
+    if (
+      data.name.length === 0 ||
+      data.job.length === 0 ||
+      data.phone.length === 0 ||
+      data.email.length === 0 ||
+      data.linkedin.length === 0 ||
+      data.github.length === 0
+    ) {
+      return true;
+    }
+  };
+
   return (
     <div>
       <Header img={logo} />
@@ -101,12 +114,13 @@ function App() {
         <Form
           data={data.palette}
           handleInput={handleInput}
-          HandleClickBtnCreateCard={HandleClickBtnCreateCard}
+          handleClickBtnCreateCard={handleClickBtnCreateCard}
           apiData={apiData}
           handleClickCollapse={handleClickCollapse}
           designOpen={designOpen}
           fillOpen={fillOpen}
           shareOpen={shareOpen}
+          disabledBtnShare={disabledBtnShare}
         />
       </main>
       <Footer></Footer>

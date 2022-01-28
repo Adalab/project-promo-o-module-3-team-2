@@ -2,7 +2,6 @@ import Label from './Label';
 import Palettes from './Palettes';
 import Input from './Input';
 import ShareBtn from './ShareBtn';
-import ShareUrl from './ShareUrl';
 
 const Form = (props) => {
   return (
@@ -15,27 +14,12 @@ const Form = (props) => {
           handleClickCollapse={props.handleClickCollapse}
           arrow={props.designOpen}
         />
-        <div className={`select js_designContainer ${props.designOpen ? '' : 'hidden'}`}>
+        <div className={`select ${props.designOpen ? '' : 'hidden'}`}>
           <h3 className='select__title'>Colores</h3>
           <div className='select__options'>
-            <Palettes
-              number='1'
-              color='cold'
-              data={props.data.palette}
-              handleInput={props.handleInput}
-            />
-            <Palettes
-              number='2'
-              color='hot'
-              data={props.data.palette}
-              handleInput={props.handleInput}
-            />
-            <Palettes
-              number='3'
-              color='mix'
-              data={props.data.palette}
-              handleInput={props.handleInput}
-            />
+            <Palettes number='1' color='cold' data={props.data} handleInput={props.handleInput} />
+            <Palettes number='2' color='hot' data={props.data} handleInput={props.handleInput} />
+            <Palettes number='3' color='mix' data={props.data} handleInput={props.handleInput} />
           </div>
         </div>
       </fieldset>
@@ -137,11 +121,10 @@ const Form = (props) => {
         />
         <div className={props.shareOpen ? '' : 'hidden'}>
           <ShareBtn
-            HandleClickBtnCreateCard={props.HandleClickBtnCreateCard}
+            handleClickBtnCreateCard={props.handleClickBtnCreateCard}
             apiData={props.apiData}
+            disabledBtnShare={props.disabledBtnShare}
           />
-
-          <ShareUrl apiData={props.apiData} />
         </div>
       </fieldset>
     </form>
