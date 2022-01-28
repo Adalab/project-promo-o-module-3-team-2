@@ -2,8 +2,33 @@ import Label from './Label';
 import Palettes from './Palettes';
 import Input from './Input';
 import ShareBtn from './ShareBtn';
+import { useRef } from 'react';
 
 const Form = (props) => {
+  const inputEl = useRef(null);
+  const fileReader = new FileReader();
+
+  const handleFile = () => {
+    const selectedFile = inputEl.current.files[0];
+    if (selectedFile) {
+      fileReader.readAsDataURL(selectedFile);
+    }
+  };
+
+  const getImage = () => {
+    props.handleImage(fileReader.result);
+  };
+
+  fileReader.addEventListener('load', getImage);
+
+  const smallImage = () => {
+    if (props.dataPhoto) {
+      return <img className='form__button--small' src={props.dataPhoto} alt='user' />;
+    } else {
+      return null;
+    }
+  };
+
   return (
     <form action='' method='post' className='form'>
       <fieldset className='fieldset__design'>
@@ -60,9 +85,16 @@ const Form = (props) => {
           <div className='form__img'>
             <label htmlFor='photo' className='button__img js__profile-trigger'>
               Añadir imagen
+              <input
+                ref={inputEl}
+                type='file'
+                name='photo'
+                id='photo'
+                className='hidden js__profile-upload-btn'
+                onChange={handleFile}
+              />
             </label>
-            <input type='file' name='photo' id='photo' className='hidden js__profile-upload-btn' />
-            <div className='form__button--square js__profile-preview'></div>
+            <div className='form__button--square'>{smallImage()}</div>
           </div>
 
           <Input

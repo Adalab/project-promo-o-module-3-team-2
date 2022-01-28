@@ -95,8 +95,10 @@
   height: 30px;
   border: #a2deaf 1px solid;
   margin-left: 20px;
-  background-size: cover;
-  background-position: center center;
+  & .form__button--small {
+    width: 30px;
+    height: 30px;
+  }
 }
 
 .form__input {

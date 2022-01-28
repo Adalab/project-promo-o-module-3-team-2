@@ -96,6 +96,15 @@ function App() {
     }
   };
 
+  //Imagen de usuario
+
+  const handleImage = (imageData) => {
+    setData({
+      ...data,
+      photo: imageData,
+    });
+  };
+
   return (
     <div>
       <Header img={logo} />
@@ -108,11 +117,13 @@ function App() {
           email={data.email}
           linkedin={data.linkedin}
           github={data.github}
+          photo={data.photo}
           data={data}
           handleReset={handleReset}
         />
         <Form
           data={data.palette}
+          dataPhoto={data.photo}
           handleInput={handleInput}
           handleClickBtnCreateCard={handleClickBtnCreateCard}
           apiData={apiData}
@@ -121,6 +132,7 @@ function App() {
           fillOpen={fillOpen}
           shareOpen={shareOpen}
           disabledBtnShare={disabledBtnShare}
+          handleImage={handleImage}
         />
       </main>
       <Footer></Footer>

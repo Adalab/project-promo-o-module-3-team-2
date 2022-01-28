@@ -11,14 +11,13 @@ const CardPreview = (props) => {
           <div className='card__info'>
             <h3
               className={`card__info--name js_previewName js_previeNameColor namePreview__pallete${props.palette}`}
-              data={props.data}
             >
               {props.name || 'Nombre Completo'}
             </h3>
 
             <p className='card__info--job js_previewJob'>{props.job || 'Front-End Developer'}</p>
           </div>
-          <div className='card__img js__profile-image'></div>
+          <img src={props.photo} alt='User avatar' className='card__img' />
           <ul className='card__social '>
             <Icons
               type={props.phone}
