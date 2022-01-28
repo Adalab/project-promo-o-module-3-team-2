@@ -3,7 +3,7 @@ import { useState } from 'react';
 const ShareBtn = (props) => {
   const handleCreateCard = (ev) => {
     props.handleClickBtnCreateCard(ev);
-    setCardCreated(!cardCreated);
+    setCardCreated(true);
   };
 
   const [cardCreated, setCardCreated] = useState(false);
