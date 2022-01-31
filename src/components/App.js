@@ -7,6 +7,8 @@ import CardPreview from './CardPreview';
 import ls from '../services/localstorage';
 import Footer from './Footer';
 import Form from './Form';
+import { Route, Switch } from 'react-router-dom';
+import Landing from './Landing';
 
 function App() {
   const [data, setData] = useState(
@@ -108,33 +110,40 @@ function App() {
   return (
     <div>
       <Header img={logo} />
-      <main className='card__main'>
-        <CardPreview
-          palette={data.palette}
-          name={data.name}
-          job={data.job}
-          phone={data.phone}
-          email={data.email}
-          linkedin={data.linkedin}
-          github={data.github}
-          photo={data.photo}
-          data={data}
-          handleReset={handleReset}
-        />
-        <Form
-          data={data.palette}
-          dataPhoto={data.photo}
-          handleInput={handleInput}
-          handleClickBtnCreateCard={handleClickBtnCreateCard}
-          apiData={apiData}
-          handleClickCollapse={handleClickCollapse}
-          designOpen={designOpen}
-          fillOpen={fillOpen}
-          shareOpen={shareOpen}
-          disabledBtnShare={disabledBtnShare}
-          handleImage={handleImage}
-        />
-      </main>
+      <Switch>
+        <Route path='/' exact>
+          <Landing />
+        </Route>
+        <Route path='/card'>
+          <main className='card__main'>
+            <CardPreview
+              palette={data.palette}
+              name={data.name}
+              job={data.job}
+              phone={data.phone}
+              email={data.email}
+              linkedin={data.linkedin}
+              github={data.github}
+              photo={data.photo}
+              data={data}
+              handleReset={handleReset}
+            />
+            <Form
+              data={data.palette}
+              dataPhoto={data.photo}
+              handleInput={handleInput}
+              handleClickBtnCreateCard={handleClickBtnCreateCard}
+              apiData={apiData}
+              handleClickCollapse={handleClickCollapse}
+              designOpen={designOpen}
+              fillOpen={fillOpen}
+              shareOpen={shareOpen}
+              disabledBtnShare={disabledBtnShare}
+              handleImage={handleImage}
+            />
+          </main>
+        </Route>
+      </Switch>
       <Footer></Footer>
     </div>
   );
