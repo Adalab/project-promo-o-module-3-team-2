@@ -81,9 +81,8 @@
   }
   &__img {
     grid-column: 1/4;
-    background-image: url('../../images/jasonderulo_pic.png');
-    background-position: center center;
-    background-size: cover;
+    object-fit: cover;
+    object-position: center center;
     background-color: gainsboro;
     width: 240px;
     height: 200px;

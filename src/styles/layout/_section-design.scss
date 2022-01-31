@@ -8,6 +8,9 @@
   @media all and(min-width:1024px) {
   }
 }
+.hidden {
+  display: none;
+}
 
 .container__design {
   display: flex;
@@ -33,6 +36,13 @@
     height: 18px;
     font-size: 18px;
     color: $metalColor;
+    transform: rotate(180deg);
+    &--up {
+      transform: rotate(0deg);
+    }
+    &--down {
+      transform: rotate(180deg);
+    }
   }
 }
 
